@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MotoTech AI – Mantenimiento de motos bajo control</title>
+<meta name="description" content="Plan de negocio de MotoTech AI: plataforma propuesta para controlar el mantenimiento y los gastos de la motocicleta.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens ===== */
+:root{--bg:#0a0e17;--panel:#121827;--line:#232c42;--blue:#2f6bff;--blue2:#5b8cff;--amber:#ffb020;--ok:#2ecc8f;--bad:#ff5d5d;--txt:#e9eef9;--mut:#9aa7c2}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+h1,h2,h3,.brand{font-family:Sora,Inter,system-ui,sans-serif;letter-spacing:-.02em}
+.card{background:linear-gradient(160deg,#141b2d,#0f1523);border:1px solid var(--line);border-radius:16px;padding:1.25rem;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.2rem;border-radius:10px;font-weight:600;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-p{background:var(--blue);color:#fff}.btn-p:hover{background:var(--blue2)}
+.btn-a{background:var(--amber);color:#1a1300}
+.btn-g{border-color:var(--line);color:var(--txt)}.btn-g:hover{border-color:var(--blue2)}
+.fld{width:100%;background:#0b1120;border:1px solid var(--line);border-radius:10px;padding:.6rem .8rem;color:var(--txt)}
+.fld:focus,.btn:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+label{font-size:.85rem;color:var(--mut);display:block;margin-bottom:.25rem}
+.tag{display:inline-block;font-size:.75rem;padding:.15rem .6rem;border-radius:99px;border:1px solid var(--amber);color:var(--amber)}
+.sec{padding:5rem 1.25rem;max-width:72rem;margin:0 auto}
+.sec h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;margin-bottom:.75rem}
+.lead{color:var(--mut);max-width:44rem}
+.st-ok{color:var(--ok)}.st-pronto{color:var(--amber)}.st-vencido{color:var(--bad)}
+.bar{height:10px;border-radius:99px;background:#1b2338;overflow:hidden}.bar>i{display:block;height:100%;background:var(--blue)}
+.chip{padding:.35rem .9rem;border-radius:99px;border:1px solid var(--line);cursor:pointer;color:var(--mut)}
+.chip[aria-pressed=true]{background:var(--blue);border-color:var(--blue);color:#fff}
+table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{padding:.55rem .5rem;border-bottom:1px solid var(--line);text-align:left}th{color:var(--mut);font-weight:500}
+.glow{background:radial-gradient(60rem 30rem at 80% -10%,rgba(47,107,255,.25),transparent 60%)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- ===== 1. HEADER ===== -->
+<header class="sticky top-0 z-40 border-b" style="background:rgba(10,14,23,.9);backdrop-filter:blur(8px);border-color:var(--line)">
+ <nav class="max-w-6xl mx-auto flex items-center justify-between px-4 h-16" aria-label="Principal">
+  <a href="#inicio" class="brand text-xl font-extrabold flex items-center gap-2"><i class="fa-solid fa-motorcycle" style="color:var(--blue2)"></i>MotoTech <span style="color:var(--blue2)">AI</span></a>
+  <ul class="hidden md:flex gap-6 text-sm" style="color:var(--mut)">
+   <li><a href="#inicio">Inicio</a></li><li><a href="#solucion">Solución</a></li><li><a href="#plataforma">Plataforma</a></li><li><a href="#mercado">Mercado</a></li><li><a href="#negocio">Modelo de negocio</a></li><li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <div class="flex items-center gap-2">
+   <a href="#demo" class="btn btn-p hidden sm:inline-flex">Probar demostración</a>
+   <button id="menuBtn" class="md:hidden btn btn-g" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+ </nav>
+ <ul id="mobileMenu" class="hidden md:hidden px-4 pb-4 space-y-2" style="color:var(--mut)">
+  <li><a href="#inicio">Inicio</a></li><li><a href="#solucion">Solución</a></li><li><a href="#plataforma">Plataforma</a></li><li><a href="#mercado">Mercado</a></li><li><a href="#negocio">Modelo de negocio</a></li><li><a href="#contacto">Contacto</a></li><li><a href="#demo" style="color:var(--amber)">Probar demostración</a></li>
+ </ul>
+</header>
+
+<main>
+<!-- ===== 2. HERO ===== -->
+<section id="inicio" class="glow">
+ <div class="sec grid lg:grid-cols-2 gap-10 items-center" style="padding-top:4rem">
+  <div>
+   <span class="tag">Prototipo académico · Tecnología en Sistemas, Tecnológico de Antioquia</span>
+   <h1 class="text-4xl sm:text-5xl font-extrabold mt-4">Tu moto al día.<br>Tus gastos bajo control.</h1>
+   <p class="lead mt-4">MotoTech AI es una plataforma web y móvil <strong>propuesta</strong> para que los motociclistas registren su kilometraje, mantenimientos y gastos, y reciban recordatorios y recomendaciones según el uso de su moto.</p>
+   <div class="flex flex-wrap gap-3 mt-6">
+    <a href="#demo" class="btn btn-p"><i class="fa-solid fa-play"></i>Probar demostración</a>
+    <a href="#solucion" class="btn btn-g">Conocer la solución</a>
+   </div>
+   <p class="text-sm mt-4" style="color:var(--mut)">Esta página es un prototipo: no es un producto lanzado y no hay usuarios reales.</p>
+  </div>
+  <div class="card" aria-label="Vista previa del panel con datos de demostración">
+   <div class="flex justify-between items-center mb-3"><strong><i class="fa-solid fa-gauge-high" style="color:var(--blue2)"></i> Moto de ejemplo</strong><span class="tag">Datos ficticios</span></div>
+   <div class="grid grid-cols-3 gap-3 text-center">
+    <div class="card" style="padding:.8rem"><div class="text-xs" style="color:var(--mut)">Kilometraje</div><div class="font-bold" id="heroKm">—</div></div>
+    <div class="card" style="padding:.8rem"><div class="text-xs" style="color:var(--mut)">Gastos</div><div class="font-bold" id="heroCost">—</div></div>
+    <div class="card" style="padding:.8rem"><div class="text-xs" style="color:var(--mut)">Alertas</div><div class="font-bold" id="heroAlerts" style="color:var(--amber)">—</div></div>
+   </div>
+   <div id="heroNext" class="mt-4 space-y-3"></div>
+  </div>
+ </div>
+</section>
+
+<!-- ===== 3. PROBLEMA Y SOLUCIÓN ===== -->
+<section id="solucion" class="sec">
+ <h2>Un problema cotidiano: el mantenimiento se olvida</h2>
+ <p class="lead">Según el plan, el principal problema es no llevar un control adecuado del mantenimiento, lo que puede causar mantenimientos atrasados, gastos innecesarios y daños mecánicos más costosos.</p>
+ <div class="grid md:grid-cols-2 gap-5 mt-8">
+  <div class="card"><h3 class="font-bold mb-3 text-lg"><i class="fa-solid fa-triangle-exclamation" style="color:var(--amber)"></i> Lo que pasa hoy</h3>
+   <ul class="space-y-2" style="color:var(--mut)">
+    <li><i class="fa-solid fa-xmark st-vencido"></i> Se olvida a qué kilometraje o cuándo se hizo cada mantenimiento.</li>
+    <li><i class="fa-solid fa-xmark st-vencido"></i> El historial de reparaciones no está organizado.</li>
+    <li><i class="fa-solid fa-xmark st-vencido"></i> Se pierde el control de los gastos de la moto.</li>
+    <li><i class="fa-solid fa-xmark st-vencido"></i> No se sabe cuándo revisar filtros, llantas, kit de arrastre o batería.</li>
+    <li><i class="fa-solid fa-xmark st-vencido"></i> La información está en libretas, notas o en la memoria.</li></ul></div>
+  <div class="card"><h3 class="font-bold mb-3 text-lg"><i class="fa-solid fa-circle-check st-ok"></i> Lo que propone MotoTech AI</h3>
+   <ul class="space-y-2" style="color:var(--mut)">
+    <li><i class="fa-solid fa-check st-ok"></i> Una plataforma que centraliza registro, historial y gastos.</li>
+    <li><i class="fa-solid fa-check st-ok"></i> Recordatorios automáticos según kilometraje y tiempo.</li>
+    <li><i class="fa-solid fa-check st-ok"></i> Recomendaciones con IA según los datos de cada moto.</li>
+    <li><i class="fa-solid fa-check st-ok"></i> Reportes de estado y gastos, con información en la nube.</li>
+    <li><i class="fa-solid fa-check st-ok"></i> A futuro: conexión con talleres y almacenes de repuestos.</li></ul></div>
+ </div>
+</section>
+
+<!-- ===== 4. ASISTENTE (SIMULADOR) ===== -->
+<section id="asistente" class="sec" style="padding-top:1rem">
+ <h2>Asistente de mantenimiento <span class="tag align-middle">Simulación</span></h2>
+ <p class="lead">Ingresa los datos de tu moto y mira cómo respondería el asistente. <strong>No hay una IA real conectada</strong>: es una simulación con reglas simples. Los intervalos son ejemplos editables; los valores reales dependen del manual del fabricante y de cada moto.</p>
+ <div class="grid lg:grid-cols-2 gap-5 mt-8">
+  <div class="card">
+   <div class="grid sm:grid-cols-2 gap-3">
+    <div class="sm:col-span-2"><label for="aModelo">Tipo o modelo de moto</label><input id="aModelo" class="fld" value="Moto de 150 cc (ejemplo)"></div>
+    <div><label for="aKm">Kilometraje actual</label><input id="aKm" type="number" min="0" class="fld" value="12450"></div>
+    <div><label for="aAceite">Km del último cambio de aceite</label><input id="aAceite" type="number" min="0" class="fld" value="10200"></div>
+    <div><label for="aArr">Km de la última revisión del kit de arrastre</label><input id="aArr" type="number" min="0" class="fld" value="3500"></div>
+    <div><label for="aFiltro">Km del último cambio de filtro de aire</label><input id="aFiltro" type="number" min="0" class="fld" value="9800"></div>
+    <div class="sm:col-span-2"><label for="aHist">Historial básico: última revisión general</label>
+     <select id="aHist" class="fld"><option value="reciente">Hace menos de 6 meses</option><option value="viejo">Hace más de 6 meses</option><option value="nunca">Nunca la he hecho</option></select></div>
+   </div>
+   <h3 class="font-bold mt-5 mb-2">Intervalos de ejemplo (km, editables)</h3>
+   <div class="grid grid-cols-3 gap-3">
+    <div><label for="iAceite">Aceite</label><input id="iAceite" type="number" min="100" class="fld" value="3000"></div>
+    <div><label for="iArr">Arrastre</label><input id="iArr" type="number" min="100" class="fld" value="8000"></div>
+    <div><label for="iFiltro">Filtro aire</label><input id="iFiltro" type="number" min="100" class="fld" value="6000"></div>
+   </div>
+  </div>
+  <div class="card" aria-live="polite"><h3 class="font-bold mb-3"><i class="fa-solid fa-robot" style="color:var(--blue2)"></i> Resultado de la simulación</h3><div id="aOut" class="space-y-4"></div></div>
+ </div>
+</section>
+
+<!-- ===== 5. DEMOSTRADOR ===== -->
+<section id="demo" class="sec" style="padding-top:1rem">
+ <h2>Demostrador de la plataforma</h2>
+ <p class="lead">Simula la experiencia de un usuario. Todo son <strong>datos ficticios</strong> y se guardan solo en este navegador (localStorage): no hay base de datos ni sincronización en la nube.</p>
+ <div id="plataforma" class="grid md:grid-cols-4 gap-4 mt-8">
+  <div class="card"><div class="text-sm" style="color:var(--mut)"><i class="fa-solid fa-motorcycle"></i> <span id="dMoto">Moto de ejemplo (demo)</span></div><div class="text-2xl font-bold mt-1" id="dKm">—</div>
+   <label for="dKmIn" class="mt-3">Actualizar kilometraje</label><div class="flex gap-2"><input id="dKmIn" type="number" min="0" class="fld"><button id="dKmBtn" class="btn btn-p" aria-label="Guardar kilometraje"><i class="fa-solid fa-floppy-disk"></i></button></div></div>
+  <div class="card"><div class="text-sm" style="color:var(--mut)">Gasto total (filtro actual)</div><div class="text-2xl font-bold mt-1" id="dTotal">—</div></div>
+  <div class="card"><div class="text-sm" style="color:var(--mut)">Registros</div><div class="text-2xl font-bold mt-1" id="dCount">—</div></div>
+  <div class="card"><div class="text-sm" style="color:var(--mut)">Alertas pendientes</div><div class="text-2xl font-bold mt-1" id="dAlerts" style="color:var(--amber)">—</div></div>
+ </div>
+ <div class="grid lg:grid-cols-3 gap-5 mt-5">
+  <form id="dForm" class="card" novalidate>
+   <h3 class="font-bold mb-3">Agregar mantenimiento o gasto</h3>
+   <label for="fType">Tipo</label><select id="fType" class="fld mb-2"></select>
+   <label for="fDate">Fecha</label><input id="fDate" type="date" class="fld mb-2">
+   <label for="fKm">Kilometraje</label><input id="fKm" type="number" min="0" class="fld mb-2">
+   <label for="fCost">Costo (COP)</label><input id="fCost" type="number" min="0" step="1000" class="fld mb-2">
+   <label for="fNote">Nota (opcional)</label><input id="fNote" maxlength="60" class="fld mb-2">
+   <p id="fErr" class="text-sm st-vencido mb-2" role="alert"></p>
+   <button class="btn btn-a w-full justify-center" type="submit"><i class="fa-solid fa-plus"></i>Agregar registro</button>
+   <button id="dReset" type="button" class="btn btn-g w-full justify-center mt-2">Restablecer datos de ejemplo</button>
+  </form>
+  <div class="card lg:col-span-2">
+   <div class="flex flex-wrap gap-3 mb-3">
+    <div><label for="xType">Filtrar por tipo</label><select id="xType" class="fld"></select></div>
+    <div><label for="xPer">Período</label><select id="xPer" class="fld"><option value="0">Todo el historial</option><option value="30">Últimos 30 días</option><option value="90">Últimos 90 días</option><option value="365">Último año</option></select></div>
+   </div>
+   <h3 class="font-bold mb-2">Gastos por tipo</h3><div id="dChart" class="space-y-2 mb-4"></div>
+   <div class="overflow-x-auto"><table><thead><tr><th>Fecha</th><th>Tipo</th><th>Km</th><th>Costo</th><th>Nota</th><th><span class="sr-only">Eliminar</span></th></tr></thead><tbody id="dRows"></tbody></table></div>
+  </div>
+ </div>
+ <div class="card mt-5"><h3 class="font-bold mb-3"><i class="fa-solid fa-bell" style="color:var(--amber)"></i> Próximos mantenimientos (según intervalos de ejemplo)</h3><div id="dNext" class="grid md:grid-cols-3 gap-4"></div></div>
+</section>
+
+<!-- ===== 6. CATÁLOGO ===== -->
+<section id="catalogo" class="sec" style="padding-top:1rem">
+ <h2>Catálogo de mantenimientos</h2>
+ <p class="lead">Los costos son ejemplos editables, no precios oficiales de MotoTech AI. El botón agrega el mantenimiento al demostrador.</p>
+ <div id="catFilters" class="flex flex-wrap gap-2 mt-6" role="group" aria-label="Filtrar por categoría"></div>
+ <div id="catGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-6"></div>
+</section>
+
+<!-- ===== 7. MERCADO Y MODELO ===== -->
+<section id="mercado" class="sec" style="padding-top:1rem">
+ <h2>Mercado y ventaja competitiva</h2>
+ <div class="grid md:grid-cols-2 gap-5 mt-6">
+  <div class="card"><h3 class="font-bold mb-2">Clientes potenciales (según el plan)</h3>
+   <ul class="list-disc pl-5 space-y-1" style="color:var(--mut)"><li>Motociclistas que usan su moto a diario.</li><li>Domiciliarios y conductores.</li><li>Quienes quieren mantener organizada la información de su vehículo.</li><li>Personas con poca experiencia en mantenimiento.</li><li>Talleres que quieran dar mejor seguimiento a sus clientes.</li></ul>
+   <p class="mt-3 text-sm" style="color:var(--mut)">Segmentación: 18 a 50 años, inicialmente Medellín y Antioquia, luego otras ciudades de Colombia.</p></div>
+  <div class="card"><h3 class="font-bold mb-2">Perfil competitivo (matriz MPC del plan)</h3>
+   <table><thead><tr><th>Alternativa</th><th>Puntaje</th></tr></thead><tbody>
+    <tr><td>MotoTech AI</td><td><strong>3,65</strong></td></tr><tr><td>App genérica</td><td>2,75</td></tr><tr><td>Taller tradicional</td><td>2,35</td></tr></tbody></table>
+   <p class="mt-3 text-sm" style="color:var(--mut)">Puntajes de autoevaluación del equipo. Los talleres ganan en confianza y atención personalizada, por eso el plan propone aliarse con ellos. La matriz MEFE del plan da 2,85: entorno externo relativamente favorable.</p></div>
+ </div>
+ <div class="card mt-5"><h3 class="font-bold mb-2">Benchmarking del plan</h3><div class="overflow-x-auto"><table>
+  <thead><tr><th>Aspecto</th><th>Libreta</th><th>Taller</th><th>App especializada</th><th>MotoTech AI</th></tr></thead><tbody>
+  <tr><td>Recordatorios automáticos</td><td>No</td><td>No siempre</td><td>Sí</td><td>Sí</td></tr>
+  <tr><td>Inteligencia artificial</td><td>No</td><td>No</td><td>Limitada</td><td>Sí (propuesta)</td></tr>
+  <tr><td>Historial digital</td><td>No</td><td>Parcial</td><td>Sí</td><td>Sí</td></tr>
+  <tr><td>Recomendaciones personalizadas</td><td>No</td><td>Depende del mecánico</td><td>Limitadas</td><td>Sí (propuesta)</td></tr></tbody></table></div></div>
+</section>
+
+<section id="negocio" class="sec" style="padding-top:1rem">
+ <h2>Modelo de negocio</h2>
+ <p class="lead">El plan propone un modelo <strong>freemium</strong>. Los precios son referencias de planeación, no ofertas vigentes.</p>
+ <div class="grid md:grid-cols-3 gap-5 mt-6">
+  <div class="card"><h3 class="font-bold">Gratis</h3><p style="color:var(--mut)">Registro de la moto, kilometraje y mantenimientos.</p></div>
+  <div class="card" style="border-color:var(--blue)"><h3 class="font-bold">Premium</h3><p style="color:var(--mut)">Recomendaciones con IA, reportes de gastos, más almacenamiento y funciones avanzadas. Referencia: $9.900 a $14.900 al mes.</p></div>
+  <div class="card"><h3 class="font-bold">Talleres</h3><p style="color:var(--mut)">Planes especiales según la cantidad de clientes que manejen (precio por definir).</p></div>
+ </div>
+ <p class="mt-4 text-sm" style="color:var(--mut)">Ingresos futuros que el plan propone evaluar: publicidad en la plataforma, comisiones por servicios o repuestos y planes empresariales.</p>
+</section>
+
+<!-- ===== 8. FINANZAS ===== -->
+<section id="finanzas" class="sec" style="padding-top:1rem">
+ <h2>Simulación financiera</h2>
+ <p class="lead">El punto de equilibrio es el nivel de ingresos necesario para cubrir los costos. Los valores iniciales vienen del plan (costos de $5.000.000 al mes y suscripción de $12.000); son hipótesis y puedes modificarlos.</p>
+ <div class="grid lg:grid-cols-2 gap-5 mt-6">
+  <div class="card">
+   <label for="cCost">Costos mensuales (COP)</label><input id="cCost" type="number" min="0" class="fld mb-3" value="5000000">
+   <label for="cPrice">Precio de la suscripción premium (COP/mes)</label><input id="cPrice" type="number" min="1" class="fld mb-3" value="12000">
+   <label for="cVar">Costo variable por usuario (COP/mes). El plan no lo cuantifica: 0 por defecto</label><input id="cVar" type="number" min="0" class="fld mb-3" value="0">
+   <label for="cUsers">Usuarios premium proyectados (el plan usa 500 como ejemplo)</label><input id="cUsers" type="number" min="0" class="fld" value="500">
+  </div>
+  <div class="card" aria-live="polite"><div id="cOut" class="space-y-3"></div></div>
+ </div>
+ <div class="grid md:grid-cols-2 gap-5 mt-5">
+  <div class="card"><h3 class="font-bold mb-2">Presupuesto inicial del plan (estimado)</h3><table><tbody>
+   <tr><td>Computadores y equipos</td><td>$6.000.000</td></tr><tr><td>Servicios en la nube</td><td>$2.000.000</td></tr><tr><td>Dominio y alojamiento</td><td>$500.000</td></tr><tr><td>Herramientas y software</td><td>$1.000.000</td></tr><tr><td>Servicios de IA</td><td>$1.500.000</td></tr><tr><td>Diseño y desarrollo</td><td>$8.000.000</td></tr><tr><td>Marketing y publicidad</td><td>$4.000.000</td></tr><tr><td>Gastos administrativos</td><td>$2.000.000</td></tr><tr><td>Imprevistos</td><td>$3.000.000</td></tr><tr><td><strong>Total</strong></td><td><strong>$28.000.000</strong></td></tr></tbody></table>
+   <p class="text-sm mt-2" style="color:var(--mut)">El plan sugiere buscar un capital semilla cercano a $30.000.000 COP.</p></div>
+  <div class="card"><h3 class="font-bold mb-2">Proyección del año 1 (escenario del plan)</h3><table><tbody>
+   <tr><td>Suscripciones (500 × $12.000 × 12)</td><td>$72.000.000</td></tr><tr><td>Otros ingresos</td><td>$8.000.000</td></tr><tr><td>Total de gastos</td><td>$60.000.000</td></tr><tr><td><strong>Utilidad estimada</strong></td><td><strong>$20.000.000</strong></td></tr><tr><td>Margen de utilidad</td><td>25 %</td></tr><tr><td>Rentabilidad sobre la inversión</td><td>71,4 %</td></tr></tbody></table>
+   <p class="text-sm mt-2" style="color:var(--mut)">Son proyecciones, no resultados reales; dependen de cuántos usuarios adquiera la plataforma.</p></div>
+ </div>
+</section>
+
+<!-- ===== 9. ARQUITECTURA ===== -->
+<section id="arquitectura" class="sec" style="padding-top:1rem">
+ <h2>Arquitectura técnica <span class="tag align-middle">Tecnología propuesta</span></h2>
+ <p class="lead">Estas son las herramientas que el plan menciona como opciones. Ninguna está implementada todavía: este prototipo solo usa HTML, Tailwind y JavaScript.</p>
+ <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
+  <div class="card"><i class="fa-brands fa-react fa-lg" style="color:var(--blue2)"></i><h3 class="font-bold mt-2">Frontend web</h3><p style="color:var(--mut)">React: interfaz web del usuario.</p></div>
+  <div class="card"><i class="fa-solid fa-mobile-screen fa-lg" style="color:var(--blue2)"></i><h3 class="font-bold mt-2">Aplicación móvil</h3><p style="color:var(--mut)">React Native o Expo: versión para celular y notificaciones.</p></div>
+  <div class="card"><i class="fa-brands fa-python fa-lg" style="color:var(--blue2)"></i><h3 class="font-bold mt-2">Backend</h3><p style="color:var(--mut)">Python, Django o similar: API, usuarios y autenticación.</p></div>
+  <div class="card"><i class="fa-solid fa-database fa-lg" style="color:var(--blue2)"></i><h3 class="font-bold mt-2">Base de datos</h3><p style="color:var(--mut)">MySQL o MongoDB (por definir): motos, historial y gastos.</p></div>
+  <div class="card"><i class="fa-solid fa-brain fa-lg" style="color:var(--blue2)"></i><h3 class="font-bold mt-2">IA y automatización</h3><p style="color:var(--mut)">Servicios de IA por definir: recomendaciones a partir del historial.</p></div>
+  <div class="card"><i class="fa-solid fa-cloud fa-lg" style="color:var(--blue2)"></i><h3 class="font-bold mt-2">Infraestructura</h3><p style="color:var(--mut)">Nube, copias de seguridad, dominio y Git/GitHub para versiones.</p></div>
+ </div>
+</section>
+
+<!-- ===== 10. EQUIPO ===== -->
+<section id="equipo" class="sec" style="padding-top:1rem">
+ <h2>Organización del proyecto</h2>
+ <p class="lead">El plan define cargos, no personas: son responsabilidades propuestas y al inicio una misma persona podría cubrir varias.</p>
+ <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
+  <div class="card"><h3 class="font-bold">Gerente o administrador</h3><p style="color:var(--mut)">Dirige el proyecto, fija objetivos, controla recursos y busca alianzas con talleres y proveedores.</p></div>
+  <div class="card"><h3 class="font-bold">Backend y bases de datos</h3><p style="color:var(--mut)">Crea la API, administra la base de datos y los usuarios.</p></div>
+  <div class="card"><h3 class="font-bold">Frontend y app móvil</h3><p style="color:var(--mut)">Desarrolla la web y la app, fáciles de usar.</p></div>
+  <div class="card"><h3 class="font-bold">Inteligencia artificial</h3><p style="color:var(--mut)">Implementa el análisis de datos y las recomendaciones.</p></div>
+  <div class="card"><h3 class="font-bold">Marketing y atención al cliente</h3><p style="color:var(--mut)">Promociona en redes y resuelve dudas de los usuarios.</p></div>
+ </div>
+</section>
+
+<!-- ===== 11. PROYECCIÓN ===== -->
+<section id="futuro" class="sec" style="padding-top:1rem">
+ <h2>Proyección futura</h2>
+ <p class="lead">Ideas del plan para crecer. Son proyecciones, no funciones disponibles.</p>
+ <div class="grid md:grid-cols-2 gap-5 mt-6">
+  <div class="card"><h3 class="font-bold mb-2">Crecimiento</h3><ul class="list-disc pl-5 space-y-1" style="color:var(--mut)"><li>Capacidad inicial pensada para unos 1.000 usuarios registrados.</li><li>Conexión con talleres y almacenes de repuestos para pedir servicios o comprar piezas.</li><li>Expansión desde Medellín a otras ciudades de Colombia y luego a Latinoamérica.</li><li>Recomendaciones que mejoran con los datos registrados.</li></ul></div>
+  <div class="card"><h3 class="font-bold mb-2">Cronograma estimado: 34 semanas</h3><ul class="space-y-1" style="color:var(--mut)"><li>Investigación y diseño: 6 semanas</li><li>Desarrollo (backend, web, móvil, IA, notificaciones): 18 semanas</li><li>Pruebas, correcciones y lanzamiento de prueba: 6 semanas</li><li>Promoción y búsqueda de usuarios: 4 semanas</li></ul><p class="text-sm mt-2" style="color:var(--mut)">Varias actividades podrían hacerse en paralelo para acortar el total.</p></div>
+ </div>
+</section>
+
+<!-- ===== 12. CONTACTO ===== -->
+<section id="contacto" class="sec" style="padding-top:1rem">
+ <div class="card glow grid md:grid-cols-2 gap-8" style="padding:2rem">
+  <div>
+   <h2>Hacer el mantenimiento más fácil y organizado</h2>
+   <p class="lead">MotoTech AI propone centralizar el historial, automatizar los avisos y ofrecer recomendaciones personalizadas para que el motociclista cuide su moto y sus gastos.</p>
+  </div>
+  <form id="cForm" novalidate>
+   <label for="nName">Nombre</label><input id="nName" class="fld mb-2" autocomplete="name">
+   <label for="nMail">Correo electrónico</label><input id="nMail" type="email" class="fld mb-2" autocomplete="email">
+   <label for="nMsg">Mensaje</label><textarea id="nMsg" rows="3" class="fld mb-2"></textarea>
+   <p id="nErr" class="text-sm st-vencido mb-2" role="alert"></p>
+   <button class="btn btn-a" type="submit"><i class="fa-solid fa-paper-plane"></i>Solicitar demostración</button>
+   <p class="text-xs mt-2" style="color:var(--mut)">Formulario demostrativo: no envía información a ningún servidor.</p>
+  </form>
+ </div>
+</section>
+</main>
+
+<footer class="text-center text-sm py-8" style="color:var(--mut);border-top:1px solid var(--line)">MotoTech AI · Prototipo académico basado en el plan de negocio · Datos ficticios, funciones simuladas y proyecciones identificados en cada sección.</footer>
+<div id="toast" class="fixed bottom-4 right-4 card hidden" role="status" style="padding:.7rem 1rem"></div>
+
+<script>
+/* ===== Utilidades ===== */
+const $ = id => document.getElementById(id);
+const money = n => '$' + Math.round(n).toLocaleString('es-CO');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num = (id, d = 0) => { const v = parseFloat($(id).value); return isNaN(v) ? d : v; };
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.remove('hidden'); clearTimeout(toast.t); toast.t=setTimeout(()=>t.classList.add('hidden'),2800); }
+
+/* Menú móvil */
+$('menuBtn').onclick = () => { const m=$('mobileMenu'); const open=m.classList.toggle('hidden')===false; $('menuBtn').setAttribute('aria-expanded',open); };
+$('mobileMenu').addEventListener('click', e => { if(e.target.tagName==='A'){ $('mobileMenu').classList.add('hidden'); $('menuBtn').setAttribute('aria-expanded',false);} });
+
+/* ===== Estado de la demostración ===== */
+const TYPES = ['Cambio de aceite','Kit de arrastre','Llantas','Filtros','Batería','Frenos','Mantenimiento general','Reparación'];
+const KEY = 'mototech-demo-v1';
+const today = () => new Date().toISOString().slice(0,10);
+const daysAgo = n => new Date(Date.now()-n*864e5).toISOString().slice(0,10);
+const seed = () => ({ km:12450, recs:[
+  {id:1,date:daysAgo(70),type:'Cambio de aceite',km:10200,cost:45000,note:'Ejemplo'},
+  {id:2,date:daysAgo(250),type:'Kit de arrastre',km:3500,cost:180000,note:'Ejemplo'},
+  {id:3,date:daysAgo(95),type:'Filtros',km:9800,cost:28000,note:'Ejemplo'},
+  {id:4,date:daysAgo(140),type:'Llantas',km:8000,cost:260000,note:'Ejemplo'},
+  {id:5,date:daysAgo(30),type:'Frenos',km:11800,cost:90000,note:'Ajuste (ejemplo)'}], nextId:6 });
+let S;
+try { S = JSON.parse(localStorage.getItem(KEY)) || seed(); } catch(e){ S = seed(); }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} };
+
+/* ===== Intervalos de ejemplo (compartidos) ===== */
+const intervals = () => ({ 'Cambio de aceite':num('iAceite',3000), 'Kit de arrastre':num('iArr',8000), 'Filtros':num('iFiltro',6000) });
+const ICON = {'Cambio de aceite':'fa-oil-can','Kit de arrastre':'fa-link','Filtros':'fa-filter'};
+function status(km, last, iv){
+  const used = km-last, left = iv-used, pct = Math.max(0, used/iv);
+  return { left, pct, state: left<0 ? 'vencido' : pct>=0.8 ? 'pronto' : 'ok' };
+}
+const stText = s => s.state==='vencido' ? `Vencido hace ${Math.abs(s.left).toLocaleString('es-CO')} km` : `Faltan ${s.left.toLocaleString('es-CO')} km`;
+function itemHTML(label, s){
+  return `<div><div class="flex justify-between text-sm"><span><i class="fa-solid ${ICON[label]||'fa-wrench'}"></i> ${esc(label)}</span><span class="st-${s.state}">${stText(s)}</span></div><div class="bar mt-1"><i style="width:${Math.min(100,s.pct*100)}%;background:var(--${s.state==='ok'?'ok':s.state==='pronto'?'amber':'bad'})"></i></div></div>`;
+}
+/* Último km registrado por tipo en la demo */
+function lastKm(type){ const r=S.recs.filter(x=>x.type===type); return r.length ? Math.max(...r.map(x=>x.km)) : null; }
+function nextList(){
+  const iv = intervals();
+  return Object.keys(iv).map(t => { const l=lastKm(t); return {t, s: l===null ? null : status(S.km, l, iv[t])}; });
+}
+
+/* ===== Asistente (simulación) ===== */
+function renderAssistant(){
+  const iv = intervals(), km = num('aKm'), modelo = $('aModelo').value.trim() || 'tu moto';
+  const rows = [['Cambio de aceite','aAceite'],['Kit de arrastre','aArr'],['Filtros','aFiltro']].map(([t,id]) => {
+    const last = num(id), s = status(km, last, iv[t]);
+    return {t, s, last};
+  });
+  const hist = $('aHist').value;
+  let html = rows.map(r => itemHTML(r.t, r.s)).join('');
+  const alerts = rows.filter(r=>r.s.state!=='ok');
+  let msg = alerts.length
+    ? alerts.map(r => `<li><span class="st-${r.s.state}">${r.s.state==='vencido'?'Pendiente':'Pronto'}:</span> ${esc(r.t.toLowerCase())} (${stText(r.s).toLowerCase()}).</li>`).join('')
+    : '<li class="st-ok">Sin alertas con los intervalos de ejemplo.</li>';
+  if (hist!=='reciente') msg += `<li><span class="st-pronto">Sugerencia:</span> ${hist==='nunca'?'aún no registras una revisión general':'tu última revisión general fue hace más de 6 meses'}; conviene programarla.</li>`;
+  if (km < Math.max(...rows.map(r=>num(r.t==='Cambio de aceite'?'aAceite':r.t==='Kit de arrastre'?'aArr':'aFiltro')))) msg += '<li class="st-vencido">Revisa los datos: el kilometraje actual es menor que un kilometraje de servicio.</li>';
+  $('aOut').innerHTML = `<p class="text-sm" style="color:var(--mut)">Resumen para: <strong>${esc(modelo)}</strong></p>${html}<ul class="space-y-1 text-sm">${msg}</ul><p class="text-xs" style="color:var(--mut)">Simulación con intervalos de ejemplo. Consulta el manual del fabricante para los valores reales.</p>`;
+}
+['aModelo','aKm','aAceite','aArr','aFiltro','aHist','iAceite','iArr','iFiltro'].forEach(id => $(id).addEventListener('input', () => { renderAssistant(); renderDemo(); }));
+
+/* ===== Demostrador ===== */
+function fillSelect(sel, withAll){ sel.innerHTML = (withAll?'<option value="">Todos los tipos</option>':'') + TYPES.map(t=>`<option>${t}</option>`).join(''); }
+fillSelect($('fType'), false); fillSelect($('xType'), true); $('fDate').value = today();
+
+function filtered(){
+  const t=$('xType').value, p=+$('xPer').value, lim = p ? Date.now()-p*864e5 : 0;
+  return S.recs.filter(r => (!t||r.type===t) && new Date(r.date).getTime()>=lim).sort((a,b)=>b.date.localeCompare(a.date));
+}
+function renderDemo(){
+  const f = filtered(), total = f.reduce((a,r)=>a+r.cost,0), nx = nextList();
+  const alerts = nx.filter(n=>n.s && n.s.state!=='ok').length;
+  $('dKm').textContent = S.km.toLocaleString('es-CO') + ' km';
+  $('dTotal').textContent = money(total); $('dCount').textContent = f.length; $('dAlerts').textContent = alerts;
+  $('heroKm').textContent = S.km.toLocaleString('es-CO'); $('heroCost').textContent = money(S.recs.reduce((a,r)=>a+r.cost,0)); $('heroAlerts').textContent = alerts;
+  const html = nx.map(n => n.s ? itemHTML(n.t, n.s) : `<div class="text-sm" style="color:var(--mut)">${esc(n.t)}: sin registro todavía.</div>`).join('');
+  $('dNext').innerHTML = html; $('heroNext').innerHTML = html;
+  const by = {}; f.forEach(r => by[r.type]=(by[r.type]||0)+r.cost);
+  const max = Math.max(1, ...Object.values(by));
+  $('dChart').innerHTML = Object.keys(by).length ? Object.entries(by).sort((a,b)=>b[1]-a[1]).map(([t,v]) => `<div><div class="flex justify-between text-sm"><span>${esc(t)}</span><span>${money(v)}</span></div><div class="bar"><i style="width:${v/max*100}%"></i></div></div>`).join('') : '<p class="text-sm" style="color:var(--mut)">No hay gastos para este filtro. Agrega un registro con el formulario.</p>';
+  $('dRows').innerHTML = f.length ? f.map(r => `<tr><td>${r.date}</td><td>${esc(r.type)}</td><td>${r.km.toLocaleString('es-CO')}</td><td>${money(r.cost)}</td><td>${esc(r.note||'')}</td><td><button class="del" data-id="${r.id}" aria-label="Eliminar registro de ${esc(r.type)}" style="color:var(--bad)"><i class="fa-solid fa-trash"></i></button></td></tr>`).join('') : '<tr><td colspan="6" style="color:var(--mut)">Sin registros para este filtro.</td></tr>';
+}
+$('dRows').addEventListener('click', e => { const b=e.target.closest('.del'); if(!b) return; S.recs = S.recs.filter(r=>r.id!==+b.dataset.id); save(); renderDemo(); toast('Registro eliminado'); });
+['xType','xPer'].forEach(id => $(id).addEventListener('change', renderDemo));
+$('dKmBtn').onclick = () => { const v=parseFloat($('dKmIn').value); if(isNaN(v)||v<0){ toast('Ingresa un kilometraje válido'); return; } S.km=v; $('dKmIn').value=''; save(); renderDemo(); toast('Kilometraje actualizado'); };
+$('dForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const km=parseFloat($('fKm').value), cost=parseFloat($('fCost').value), date=$('fDate').value;
+  let err='';
+  if(!date) err='Elige una fecha.'; else if(isNaN(km)||km<0) err='Ingresa un kilometraje válido.'; else if(isNaN(cost)||cost<0) err='Ingresa un costo válido (0 o más).';
+  $('fErr').textContent = err; if(err) return;
+  S.recs.push({id:S.nextId++, date, type:$('fType').value, km, cost, note:$('fNote').value.trim()});
+  if(km>S.km) S.km=km;
+  save(); $('fKm').value=''; $('fCost').value=''; $('fNote').value=''; renderDemo(); toast('Registro agregado');
+});
+$('dReset').onclick = () => { S = seed(); save(); renderDemo(); toast('Datos de ejemplo restablecidos'); };
+
+/* ===== Catálogo ===== */
+const CAT = [
+ {n:'Cambio de aceite',type:'Cambio de aceite',cat:'Motor',ic:'fa-oil-can',d:'Lubrica el motor. Se registra el kilometraje para calcular el próximo cambio.',c:45000},
+ {n:'Revisión del kit de arrastre',type:'Kit de arrastre',cat:'Transmisión',ic:'fa-link',d:'Cadena, piñón y catalina: revisar desgaste y tensión.',c:180000},
+ {n:'Cambio de llantas',type:'Llantas',cat:'Rodamiento',ic:'fa-circle-dot',d:'Control del desgaste y de la fecha del último cambio.',c:260000},
+ {n:'Revisión de filtros',type:'Filtros',cat:'Motor',ic:'fa-filter',d:'Filtro de aire y otros filtros que indique el manual.',c:28000},
+ {n:'Revisión de batería',type:'Batería',cat:'Eléctrico',ic:'fa-car-battery',d:'Estado de carga y fecha de instalación.',c:120000},
+ {n:'Mantenimiento general',type:'Mantenimiento general',cat:'General',ic:'fa-screwdriver-wrench',d:'Revisión completa en taller; el plan también contempla frenos.',c:150000}];
+let catSel = 'Todas';
+function renderCat(){
+  const cats = ['Todas', ...new Set(CAT.map(c=>c.cat))];
+  $('catFilters').innerHTML = cats.map(c=>`<button class="chip" aria-pressed="${c===catSel}" data-c="${c}">${c}</button>`).join('');
+  $('catGrid').innerHTML = CAT.filter(c=>catSel==='Todas'||c.cat===catSel).map(c => `<article class="card"><i class="fa-solid ${c.ic} fa-lg" style="color:var(--blue2)"></i><h3 class="font-bold mt-2">${c.n}</h3><p style="color:var(--mut)" class="text-sm">${c.d}</p><label class="mt-3" for="cc-${c.type}">Costo de ejemplo (COP, editable)</label><input id="cc-${c.type}" type="number" min="0" step="1000" class="fld" value="${c.c}"><button class="btn btn-p mt-3 w-full justify-center add" data-t="${c.type}"><i class="fa-solid fa-plus"></i>Agregar al demostrador</button></article>`).join('');
+}
+$('catFilters').addEventListener('click', e => { const b=e.target.closest('.chip'); if(b){ catSel=b.dataset.c; renderCat(); } });
+$('catGrid').addEventListener('click', e => { const b=e.target.closest('.add'); if(!b) return;
+  $('fType').value=b.dataset.t; $('fCost').value=$('cc-'+b.dataset.t).value; $('fKm').value=S.km;
+  location.hash='demo'; $('fKm').focus(); toast('Completa el kilometraje y agrega el registro'); });
+
+/* ===== Calculadora de punto de equilibrio ===== */
+function renderCalc(){
+  const cost=num('cCost'), price=num('cPrice',1), cv=num('cVar'), users=num('cUsers'), m=price-cv;
+  if(m<=0){ $('cOut').innerHTML='<p class="st-vencido">El costo variable debe ser menor que el precio para que exista punto de equilibrio.</p>'; return; }
+  const be=Math.ceil(cost/m), inc=users*price, profit=users*m-cost;
+  $('cOut').innerHTML = `<div><div class="text-sm" style="color:var(--mut)">Punto de equilibrio</div><div class="text-3xl font-bold" style="color:var(--amber)">${be.toLocaleString('es-CO')} usuarios premium</div></div>
+   <div class="bar"><i style="width:${Math.min(100,users/be*100)}%"></i></div>
+   <p class="text-sm" style="color:var(--mut)">Con ${users.toLocaleString('es-CO')} usuarios: ingresos de ${money(inc)} al mes y una ${profit>=0?'utilidad':'pérdida'} de <strong class="${profit>=0?'st-ok':'st-vencido'}">${money(Math.abs(profit))}</strong> mensual (${money(profit*12)} al año).</p>
+   <p class="text-xs" style="color:var(--mut)">Fórmula: costos ÷ (precio − costo variable por usuario). Con los valores del plan: $5.000.000 ÷ $12.000 ≈ 417. Es un ejercicio hipotético.</p>`;
+}
+['cCost','cPrice','cVar','cUsers'].forEach(id => $(id).addEventListener('input', renderCalc));
+
+/* ===== Formulario de contacto (demostrativo) ===== */
+$('cForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const n=$('nName').value.trim(), m=$('nMail').value.trim(), t=$('nMsg').value.trim();
+  const err = !n ? 'Escribe tu nombre.' : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m) ? 'Escribe un correo válido.' : t.length<10 ? 'El mensaje debe tener al menos 10 caracteres.' : '';
+  $('nErr').textContent = err; if(err) return;
+  $('cForm').reset(); toast('Gracias, ' + n + '. Formulario demostrativo: no se envió a ningún servidor.');
+});
+
+/* Inicio */
+renderAssistant(); renderDemo(); renderCat(); renderCalc();
+</script>
+</body>
+</html>
